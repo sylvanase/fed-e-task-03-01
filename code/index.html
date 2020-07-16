@@ -21,7 +21,7 @@
     <h1>v-html</h1>
     <div v-html="html"></div>
     <h1>v-on</h1>
-    <button v-on:click="count += 1">Add 1</button>
+    <button v-on:click="handleClick">add count</button>
   </div>
   <script src="./dep.js"></script>
   <script src="./watcher.js"></script>
@@ -36,7 +36,12 @@
         count: 1,
         html: '<div style="color: red;">我是个html节点。<span style="color: pink;">猛男都喜欢粉色~</span></div>'
       },
-
+      methods: {
+        handleClick() {
+          console.log(this);
+          // this.count++
+        }
+      }
     })
   </script>
 </body>

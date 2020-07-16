@@ -7,6 +7,7 @@ class Vue {
       typeof options.el === 'string'
         ? document.querySelector(options.el)
         : options.el;
+    this.$methods = options.methods || {};
     // data 成员转换
     this._proxyData(this.$data);
     // 调用observer

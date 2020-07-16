@@ -38,7 +38,12 @@ class Compiler {
 
   update(node, key, attrName) {
     let updateFn = this[`${attrName}Updater`];
-    updateFn && updateFn.call(this, node, this.vm[key], key);
+    if (attrName.startsWith('on:')) {
+      updateFn = this.onUpdater;
+      updateFn && updateFn.call(this, node, attrName.substr(3), key);
+    } else {
+      updateFn && updateFn.call(this, node, this.vm[key], key);
+    }
   }
 
   // 处理v-text指令
@@ -67,9 +72,13 @@ class Compiler {
       node.innerHTML = newValue;
     });
   }
-
-  onUpdater(node, value, key) {
-    console.log(node, value, key);
+  // 处理v-on
+  onUpdater(node, eventType, key) {
+    node.addEventListener(eventType, () => {
+      if (this.vm.$options.methods[key]) {
+        this.vm.$options.methods[key]();
+      }
+    });
   }
 
   // 编译文本节点，处理差值表达式
