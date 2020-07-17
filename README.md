@@ -14,6 +14,3 @@ set 方法中先判断对象是否存在，并对需要添加的 key 进行校�
 
 vue 中 diff 时调用 patch，patch 接收 oldVnode 和 vnode 两个参数，对比两个 vnode 是否相同，通过节点的 key 值和 sel，不是相同的节点，重新渲染。是相同节点，判断 vnode 中是否有文本，有文本且与 oldvnode 不同，更新文本。新的 vnode 中包含 children，需要判断子节点是否有变化，在子节点中使用 diff 算法进行比较。vue 中优化了 diff 算法，使其只在同层级中进行。
 
-二、编程题
-1、模拟 VueRouter 的 hash 模式的实现，实现思路和 History 模式类似，把 URL 中的 # 后面的内容作为路由的地址，可以通过 hashchange 事件监听路由地址的变化。
-
