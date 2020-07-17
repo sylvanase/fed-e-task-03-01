@@ -21,7 +21,7 @@
     <h1>v-html</h1>
     <div v-html="html"></div>
     <h1>v-on</h1>
-    <button v-on:click="handleClick">add count</button>
+    <button v-on:click="handleClick">触发vm中的click</button>
   </div>
   <script src="./dep.js"></script>
   <script src="./watcher.js"></script>
@@ -38,8 +38,8 @@
       },
       methods: {
         handleClick() {
-          console.log(this);
-          // this.count++
+          alert('handleClick working now~  count will add')
+          this.count ++
         }
       }
     })

@@ -76,7 +76,8 @@ class Compiler {
   onUpdater(node, eventType, key) {
     node.addEventListener(eventType, () => {
       if (this.vm.$options.methods[key]) {
-        this.vm.$options.methods[key]();
+        this.vm.$options.methods[key].call(this.vm);
+
       }
     });
   }
